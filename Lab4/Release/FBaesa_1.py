@@ -19,9 +19,8 @@ def main():
     certificate = []  # свидетельства
     open_file(hypothesis, "hypothesis.txt")
     for i in hypothesis:
-        i[1] = float(i[1])
-        i[4] = float(i[1])
-        i[5] = float(i[5])
+        i[1], i[4], i[5] = float(i[1]), float(i[4]), float(i[5])
+
     open_file(certificate, "certificate.txt")
     print_masiv(hypothesis)
     print_masiv(certificate)
@@ -45,6 +44,7 @@ def main():
 
         #  выбор вопроса по цене
         max_list = []
+        max_ce = 0
         for i in certificate:
             if i[3] == '0':
                 max_list.append(i[2])
@@ -87,7 +87,8 @@ def main():
             if i[0] not in(Ph_list_film):
                 Ph_list_film.append(i[0])
 
-        max_Ph = int(Ph_list.index(max(Ph_list)))
+        for i in hypothesis:
+            max_Ph = int(Ph_list.index(max(Ph_list)))
 
     print("Ответ:", Ph_list_film[max_Ph])
 

@@ -36,7 +36,7 @@ while n < 7:
     max_list = []
     max_ce = 0
     for i in svid:
-        if i[3] =='0':
+        if i[3] == '0':
             max_list.append(i[2])
             max_ce = max(max_list)
             if i[2] == max_ce:
