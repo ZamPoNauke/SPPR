@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 def open_file(massiv, file):
-    with open(file) as handle:  # открываем файл с гипотезами
+    with open(file, encoding='windows-1251') as handle:  # открываем файл с гипотезами
         for line in handle:
             massiv.append([str(x) for x in line.split('; ')])
     for i in massiv:
@@ -21,26 +21,24 @@ def main():
     for i in hypothesis:
         i[1], i[4], i[5] = float(i[1]), float(i[4]), float(i[5])
 
-    open_file(certificate, "certificate.txt")
+    open_file(certificate, "syptomps.txt")
     print_masiv(hypothesis)
     print_masiv(certificate)
 
     n = 0
     while n < len(certificate):
         for i in hypothesis:
+            PHE = (i[4]*i[1])/(i[4]*i[1]+i[5]*(1-i[1]))
+            i[6] = PHE
+            PH_E = ((1-i[4])*i[1])/(1-i[4]*i[1]-i[5]*(1-i[1]))
+            i[7] = PH_E
             # цена (подсчет цен). Нужны для того, что бы определить какой вопрос задать первым.
-            Price = abs(((i[4]*i[1]) / (i[4]*i[1]+i[5]*(1-i[1]))) - (((1-i[4])*i[1]) / (1-i[4]*i[1]-i[5]*(1-i[1]))))
+            Price = abs(PHE - i[1]) + abs(PH_E - i[1])
             N = i[3]
             for j in certificate:
                 if j[0] == N:
                     j[2] = Price  # записываю цену в список свидетельств
         print_masiv(certificate)
-
-        for i in hypothesis:
-            PHE = (i[4]*i[1])/(i[4]*i[1]+i[5]*(1-i[1]))
-            i[6] = PHE
-            PH_E = ((1-i[4])*i[1])/(1-i[4]*i[1]-i[5]*(1-i[1]))
-            i[7] = PH_E
 
         #  выбор вопроса по цене
         max_list = []
