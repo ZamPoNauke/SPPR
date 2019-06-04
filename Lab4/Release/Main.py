@@ -7,8 +7,8 @@ class Block:
         self.button_yes = Button(command=self.yes, text="Yes")
         self.button_no = Button(command=self.no, text="No")
         self.button_mb = Button(command=self.mb, text="May Be")
-        self.label_input = Label(bg='black', fg='white', width=60)
-        self.label_output = Label(bg='black', fg='white', width=60)
+        self.label_input = Label(bg='black', fg='white', width=90)
+        self.label_output = Label(bg='black', fg='white', width=90)
 
         self.svid_pred_num = 0
         self.hypothesis = hypothesis
